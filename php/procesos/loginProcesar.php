@@ -5,10 +5,8 @@ session_set_cookie_params([
     'httponly' => true
 ]);
 session_start();
-
-define('BASE_PATH', dirname(__DIR__, 2) . '/');
-
-require_once BASE_PATH . 'php/funciones/usuarios.php';
+define('BASE_PATH', __DIR__ . '/../');
+require_once __DIR__ . '/../funciones/usuarios.php';
 
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';

@@ -22,19 +22,11 @@ if (!defined('BASE_URL')) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
 
-    <?php
-    // Si la variable $estilo_especifico tiene algo, lo cargamos
-    if (isset($estilo_especifico)) {
-        echo '<link rel="stylesheet" href="' .
-        BASE_URL .
-        'css/' .
-        $estilo_especifico .
-        '?v=' .
-        time() .
-        '">';
-    }
-
-    ?>
+    
+    <!--Si la variable $estilo_especifico tiene algo, lo cargamos-->
+   <?php if (isset($estilo_especifico)): ?>
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/<?= $estilo_especifico ?>?v=<?= time() ?>">
+<?php endif; ?>
 
 </head>
 <body>

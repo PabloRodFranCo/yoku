@@ -4,7 +4,6 @@
 * {
     box-sizing: border-box;
     margin: 0;
-
 }
 
 /* Body de la página web */
@@ -13,7 +12,7 @@ body {
     font-size: 16px;
     font-family: system-ui, 'Playfair Display', Inter, "Montserrat", sans-serif;
     display: grid;
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
     grid-template-areas:
         "header header"
         "hero hero"
@@ -122,6 +121,7 @@ footer {
     padding: 0 2rem;
     align-items: center;
     height: 100%;
+    
 }
 
 .menu-superior ul {
@@ -218,6 +218,7 @@ footer {
     gap: 2rem;
     /* Espacio entre productos */
     margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 /* Tarjeta individual de cada producto */
@@ -227,7 +228,9 @@ footer {
     border: 1px solid #ddd;
     text-align: center;
     border-radius: 8px;
-    /* Bordes redondeados */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .producto img {
@@ -236,6 +239,55 @@ footer {
     height: auto;
 }
 
+.boton-producto-texto{
+    background-color: rgb(72, 186, 220);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.4rem;
+
+    margin-top: 0.6rem;
+}
+
+.acciones-producto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.acciones-producto form{
+    margin: 0;
+}
+
+.boton-producto{
+    background-color: rgb(72, 186, 220);
+    border: none;
+    border-radius: 0.4rem;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 0.6rem;
+    cursor: pointer;
+}
+.boton-producto img{
+     width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.boton-producto:hover, .boton-producto-texto:hover {
+    animation: linear;
+    transform: scale(0.95);
+    transition-duration: 0.1s;
+}
 
 /* Pie de página, menú inferior*/
 .footer {

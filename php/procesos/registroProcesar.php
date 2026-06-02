@@ -1,14 +1,6 @@
 <?php
-session_set_cookie_params([
-    'lifetime' => 60 * 60 * 24 * 7,
-    'path' => '/',
-    'httponly' => true
-]);
-session_start();
-
-define('BASE_PATH', dirname(__DIR__, 2) . '/');
-
-require_once BASE_PATH . 'php/funciones/usuarios.php';
+define('BASE_PATH', __DIR__ . '/../');
+require_once BASE_PATH . '../php/funciones/usuarios.php';
 
 $nombre = trim($_POST['nombre'] ?? '');
 $email = trim($_POST['email'] ?? '');

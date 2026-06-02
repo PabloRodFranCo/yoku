@@ -29,7 +29,7 @@ require_once BASE_PATH . 'php/componentes/header.php';
             
             <nav class="menu-perfil">
                 <ul>
-                    <li><a href="<?= BASE_URL ?>public/listaDeseos.php">❤️ Lista de deseos</a></li>
+                    <li><a href="<?= BASE_URL ?>public/listaDeseos.php">Lista de deseos</a></li>
                     <li><a href="#">Consultar pedidos</a></li>
                     <li><a href="#">Configurar datos personales</a></li>
                     <li><a href="#">Configurar cuenta</a></li>
@@ -48,25 +48,25 @@ require_once BASE_PATH . 'php/componentes/header.php';
                 </div>
                 <h3>Bufanda</h3>
                 <p class="subtitulo">Color beige</p>
-                <p class="precio">10,99 $</p>
+                <p class="precio">10,99 €</p>
             </article>
 
             <article class="card-mini">
                 <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/pantalon-rayas.jpg" alt="Pantalón">
+                    <img src="<?= BASE_URL ?>img/productos/pant.jpg" alt="Pantalón">
                 </div>
                 <h3>Pantalón</h3>
                 <p class="subtitulo">A rayas</p>
-                <p class="precio">10,99 $</p>
+                <p class="precio">10,99 €</p>
             </article>
 
             <article class="card-mini">
                 <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/zapatos-blancos.jpg" alt="Zapatos">
+                    <img src="<?= BASE_URL ?>img/productos/zapas.webp" alt="Zapatos">
                 </div>
                 <h3>Zapatos</h3>
                 <p class="subtitulo">Blancos lisos</p>
-                <p class="precio">10,99 $</p>
+                <p class="precio">10,99 €</p>
             </article>
         </div>
         
@@ -84,25 +84,25 @@ require_once BASE_PATH . 'php/componentes/header.php';
                 </div>
                 <h3>Bufanda</h3>
                 <p class="subtitulo">Color beige</p>
-                <p class="precio">10,99 $</p>
+                <p class="precio">10,99 €</p>
             </article>
 
             <article class="card-mini">
                 <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/falda-cuadros.jpg" alt="Falda">
+                    <img src="<?= BASE_URL ?>img/productos/falda.webp" alt="Falda">
                 </div>
                 <h3>Falda</h3>
                 <p class="subtitulo">A cuadros</p>
-                <p class="precio">10,99 $</p>
+                <p class="precio">10,99 €</p>
             </article>
 
             <article class="card-mini">
                 <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/camiseta-rosa.jpg" alt="Camiseta">
+                    <img src="<?= BASE_URL ?>img/productos/camiseta.webp" alt="Camiseta">
                 </div>
                 <h3>Camiseta</h3>
                 <p class="subtitulo">Color rosa</p>
-                <p class="precio">10,99 $</p>
+                <p class="precio">10,99 €</p>
             </article>
         </div>
 
@@ -113,65 +113,7 @@ require_once BASE_PATH . 'php/componentes/header.php';
 </main>
 
 
-<footer class="footer">
-    <div class="footer-container">
-
-        <!-- LOGO + RRSS -->
-        <div class="footer-col footer-brand">
-            <img src="img/logos/yoku-negro-sf.png" alt="Yoku" class="footer-logo">
-            <p class="footer-brand-text">YOKU! Clothing Store</p>
-
-            <div class="footer-socials">
-                <a href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
-                <a href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-               
-            </div>
-        </div>
-
-        <!-- INICIO -->
-        <div class="footer-col">
-            <h4>Inicio</h4>
-            <ul>
-                <li><a href="#">Perfil</a></li>
-                <li><a href="#">Carrito compra</a></li>
-                <li><a href="#">Pedidos</a></li>
-            </ul>
-        </div>
-
-        <!-- PERSONALIZACIONES -->
-        <div class="footer-col">
-            <h4>Personalizaciones</h4>
-            <ul>
-                <li><a href="#">Personalizar</a></li>
-                <li><a href="#">Productos base</a></li>
-                <li><a href="#">Información</a></li>
-            </ul>
-        </div>
-
-        <!-- PRODUCTOS -->
-        <div class="footer-col">
-            <h4>Productos</h4>
-            <ul>
-                <li><a href="#">Mujer</a></li>
-                <li><a href="#">Hombre</a></li>
-                <li><a href="#">Accesorios</a></li>
-            </ul>
-        </div>
-
-        <!-- CONTACTO -->
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <ul>
-                <li><a href="#">Acerca de nosotros</a></li>
-                <li><a href="#">Políticas de seguridad</a></li>
-                <li><a href="#">Política de devoluciones</a></li>
-            </ul>
-        </div>
-
-    </div>
-</footer>
+<?php require_once BASE_PATH . 'php/componentes/footer.php'; ?>
 
 </body>
 </html>
