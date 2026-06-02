@@ -37,4 +37,16 @@ function obtenerCarrito() {
 function vaciarCarrito() {
     unset($_SESSION['carrito']);
 }
+function agregarDisenoAlCarrito($disenoId, $texto, $imagen)
+{
+    $idTemporal = 'design_' . $disenoId;
+
+    $_SESSION['carrito'][$idTemporal] = [
+        'cantidad' => 1,
+        'texto' => $texto,
+        'imagen' => $imagen,
+        'es_diseno' => true,
+        'diseno_id' => $disenoId
+    ];
+}
 ?>

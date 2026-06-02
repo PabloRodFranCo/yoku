@@ -26,6 +26,7 @@ if (!password_verify($password, $usuario['password'])) {
 $_SESSION['usuario_id'] = $usuario['id'];
 $_SESSION['rol'] = $usuario['rol'];
 $_SESSION['nombre'] = $usuario['nombre'];
+$_SESSION['email'] = $usuario['email'];
 
 header("Location: /yoku/public/perfil.php");
 exit;

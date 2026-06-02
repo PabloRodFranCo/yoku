@@ -373,3 +373,103 @@ footer {
     font-weight:bold;
     margin-left:15px;
 }
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    font-size:2rem;
+    cursor:pointer;
+    color:black;
+}
+
+@media screen and (max-width: 768px){
+
+    header{
+        height:auto;
+    }
+
+    .menu-superior{
+        flex-direction:column;
+        padding:1rem;
+        gap:1rem;
+    }
+
+    .logo-superior{
+        justify-content:center;
+        height:auto;
+    }
+
+    .logo-superior img:first-child{
+        height:50px;
+        max-height:none;
+    }
+
+    .logo-superior img:last-child{
+        height:35px;
+        max-height:none;
+    }
+
+    .menu-superior ul{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        padding:0;
+    }
+
+    .menu-superior li{
+        width:100%;
+        padding:0;
+    }
+
+    .menu-superior li a{
+        display:block;
+        text-align:center;
+        padding:15px;
+    }
+
+    .botones-menu{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        width:100%;
+        flex-wrap:wrap;
+    }
+
+    .menu-superior button{
+        width:55px;
+        height:55px;
+    }
+
+    .iconos{
+        width:28px;
+        height:28px;
+    }
+
+    .usuario-logueado{
+        width:100%;
+        text-align:center;
+        color:black;
+        margin-bottom:10px;
+    }
+
+    .explorar{
+        left:50%;
+        top:70%;
+        transform:translateX(-50%);
+        padding:1rem 2rem;
+    }
+
+    .secciones{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .secciones > article{
+        width:90%;
+        height:350px;
+    }
+
+    .productos{
+        grid-template-columns:1fr;
+    }
+}

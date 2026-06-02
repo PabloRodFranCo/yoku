@@ -30,7 +30,6 @@
             <ul>
                 <li><a href="<?= BASE_URL ?>public/perfil.php">Perfil</a></li>
                 <li><a href="<?= BASE_URL ?>public/carrito.php">Carrito compra</a></li>
-                <li><a href="#">Pedidos</a></li>
                 <li><a href="<?= BASE_URL ?>public/listaDeseos.php">Lista de deseos</a></li>
 
             </ul>
@@ -61,8 +60,6 @@
             <h4>Contacto</h4>
             <ul>
                 <li><a href="<?=BASE_URL?>public/contacto.php">Acerca de nosotros</a></li>
-                <li><a href="#">Políticas de seguridad</a></li>
-                <li><a href="#">Política de devoluciones</a></li>
             </ul>
         </div>
 

@@ -150,6 +150,14 @@ $stmt->execute([
 
 $disenoId = $conexion->lastInsertId();
 
+require_once BASE_PATH . 'php/funciones/carritoFunciones.php';
+
+agregarDisenoAlCarrito(
+    $disenoId,
+    $texto,
+    $rutaBD
+);
+
 $_SESSION['ultimo_diseno'] = $disenoId;
 
 echo json_encode([

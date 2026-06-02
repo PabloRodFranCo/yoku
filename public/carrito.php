@@ -37,17 +37,31 @@ require_once BASE_PATH . 'php/componentes/header.php';
 
         foreach ($carrito as $id => $item):
 
-            $stmt = $conexion->prepare("
-                SELECT nombre, precio
-                FROM productos
-                WHERE id = ?
-            ");
+            if (!empty($item['es_diseno'])) {
 
-            $stmt->execute([$id]);
-            $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+                $producto = [
+                    'nombre' => 'Camiseta personalizada',
+                    'precio' => 19.99
+                ];
+
+            } else {
+
+                $stmt = $conexion->prepare("
+                    SELECT nombre, precio
+                    FROM productos
+                    WHERE id = ?
+                ");
+
+                $stmt->execute([$id]);
+
+                $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+            }
 
             $cantidad = $item['cantidad'];
-            $subtotal = $producto['precio'] * $cantidad;
+
+            $subtotal =
+                $producto['precio'] *
+                $cantidad;
 
             $total += $subtotal;
         ?>
@@ -77,21 +91,29 @@ require_once BASE_PATH . 'php/componentes/header.php';
 
                 <?php if (!empty($item['imagen'])): ?>
                     <div class="preview-diseno">
-                        <img src="<?= BASE_URL ?>uploads/<?= $item['imagen'] ?>">
+                        <img src="<?= BASE_URL ?><?= $item['imagen'] ?>">
                     </div>
                 <?php endif; ?>
 
-                <div class="acciones-carrito">
+                <div class="acciones">
+                    <form
+                        action="<?= BASE_URL ?>public/procesos/eliminarDelCarrito.php"
+                        method="POST"
+                    >
+                        <input
+                            type="hidden"
+                            name="id"
+                            value="<?= htmlspecialchars($id) ?>"
+                        >
 
-                    <p class="subtotal">
-                        <?= $subtotal ?> €
-                    </p>
-
-                    <a class="btn-eliminar"
-                       href="<?= BASE_URL ?>php/procesos/carritoAccion.php?accion=remove&id=<?= $id ?>">
-                        Eliminar
-                    </a>
-
+                        <button
+                            type="submit"
+                            class="btn-eliminar"
+                            onclick="return confirm('¿Eliminar este artículo del carrito?')"
+                        >
+                            Eliminar
+                        </button>
+                    </form>
                 </div>
 
             </article>
