@@ -8,7 +8,6 @@ require BASE_PATH . 'php/funciones/productos.php';
 
 require BASE_PATH . 'php/componentes/header.php';
 
-session_start(); // Siempre lo primero, antes de cualquier HTML
 
 $productos = obtenerProductosActivos();
 

@@ -13,7 +13,7 @@ require_once BASE_PATH . 'php/componentes/header.php';
     <div class="formularios">
     
 
-<form action="registroProcesar.php" method="POST">
+<form action="<?= BASE_URL ?>php/procesos/registroProcesar.php" method="POST">
     <h1>Registro</h1>
     <p>Crea una cuenta</p><br>
     <input type="text" name="nombre" required placeholder="Nombre" autofocus><br>

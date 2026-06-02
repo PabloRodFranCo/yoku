@@ -1,8 +1,13 @@
 <?php
- if (!defined('BASE_URL')) {
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!defined('BASE_URL')) {
     define('BASE_URL', '/yoku/');
 }
-        ?>
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +25,13 @@
     <?php
     // Si la variable $estilo_especifico tiene algo, lo cargamos
     if (isset($estilo_especifico)) {
-        echo '<link rel="stylesheet" href="' . BASE_URL . 'css/' . $estilo_especifico . '?v=<?= time() ?>">';
+        echo '<link rel="stylesheet" href="' .
+        BASE_URL .
+        'css/' .
+        $estilo_especifico .
+        '?v=' .
+        time() .
+        '">';
     }
 
     ?>
@@ -43,9 +54,37 @@
 
         </ul>
         <div class="botones-menu">
+            <?php if(isset($_SESSION['usuario_id'])): ?>
+            <div class="usuario-logueado">
+                Hola, <?= htmlspecialchars($_SESSION['nombre']) ?>
+            </div>
+            <?php endif; ?>
             <button><a class="iconos" href="<?= BASE_URL ?>public/listaDeseos.php"><img class="iconos" src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco.jpg" alt="Icono favoritos"></a></button>
             <button><a class="iconos" href="<?= BASE_URL ?>public/carrito.php"><img class="iconos" src="<?= BASE_URL ?>img/iconos/icono-carrito-blanco.png" alt="Icono carrito"></a></button>
-            <button><a class="iconos" href="<?= BASE_URL ?>public/login.php"><img class="iconos" src="<?= BASE_URL ?>img/iconos/icono-blanco-bld.png"></a></button>
+            <?php if(isset($_SESSION['usuario_id'])): ?>
+            <button>
+                <a class="iconos" href="<?= BASE_URL ?>public/perfil.php">
+                    <img
+                        class="iconos"
+                        src="<?= BASE_URL ?>img/iconos/icono-blanco-bld.png"
+                        alt="Perfil"
+                    >
+                </a>
+            </button>
+
+            <?php else: ?>
+
+                <button>
+                    <a class="iconos" href="<?= BASE_URL ?>public/login.php">
+                        <img
+                            class="iconos"
+                            src="<?= BASE_URL ?>img/iconos/icono-blanco-bld.png"
+                            alt="Login"
+                        >
+                    </a>
+                </button>
+
+            <?php endif; ?>
 
         </div>
         

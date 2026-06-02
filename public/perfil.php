@@ -1,9 +1,15 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['usuario_id'])){
+
+    header("Location: login.php");
+    exit;
+}
 define('BASE_PATH', __DIR__ . '/../');
 define('BASE_URL', '/yoku/');
 
 require BASE_PATH . 'php/funciones/productos.php';
-session_start(); // Siempre lo primero, antes de cualquier HTML
 $productos = obtenerProductosActivos();
 $titulo_pagina = "Mi Perfil - YOKU";
 $estilo_especifico= "perfil.css";

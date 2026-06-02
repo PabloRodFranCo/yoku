@@ -11,7 +11,7 @@ require_once BASE_PATH . 'php/componentes/header.php';
     <div class="formularios">
            
     
-    <form  action="loginProcesar.php" method="POST">
+    <form action="<?= BASE_URL ?>php/procesos/loginProcesar.php" method="POST">
           <h1>Iniciar sesión</h1>
         <p>Introduzca sus datos de acceso</p><br>
         <input type="email" name="email" required placeholder="Email" autofocus><br>

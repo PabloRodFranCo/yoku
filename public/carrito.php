@@ -1,7 +1,13 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['usuario_id'])){
+
+    header("Location: login.php");
+    exit;
+}
 define('BASE_PATH', __DIR__ . '/../');
 define('BASE_URL', '/yoku/');
-session_start();
 require_once  BASE_PATH . 'config/db.php';
 require_once  BASE_PATH .'php/funciones/carritoFunciones.php';
 

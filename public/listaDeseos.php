@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['usuario_id'])){
+
+    header("Location: login.php");
+    exit;
+}
 define('BASE_PATH', __DIR__ . '/../');
 define('BASE_URL', '/yoku/');
 require_once BASE_PATH . 'config/db.php';

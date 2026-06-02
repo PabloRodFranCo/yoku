@@ -1,0 +1,59 @@
+.editor-container{
+    max-width:1400px;
+    margin:auto;
+    padding:40px;
+}
+
+.editor-layout{
+    display:flex;
+    gap:40px;
+}
+
+.panel-herramientas{
+    width:300px;
+    background:#f5f5f5;
+    padding:20px;
+    border-radius:10px;
+}
+
+.panel-herramientas input,
+.panel-herramientas button{
+    width:100%;
+    margin-bottom:15px;
+}
+
+.zona-diseno{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.camiseta-preview{
+    position:relative;
+    width:600px;
+}
+
+.camiseta-base{
+    width:100%;
+    display:block;
+}
+
+.imagen-personalizada{
+    position:absolute;
+    top:180px;
+    left:225px;
+    width:150px;
+    cursor:move;
+    display:none;
+    user-select:none;
+}
+
+.texto-personalizado{
+    position:absolute;
+    top:350px;
+    left:220px;
+    font-size:24px;
+    font-weight:bold;
+    cursor:move;
+    user-select:none;
+}
