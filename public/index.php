@@ -49,23 +49,21 @@ require_once BASE_PATH . 'php/componentes/header.php';
         <p><?= $producto['descripcion'] ?></p>
         <p><strong><?= $producto['precio'] ?> €</strong></p>
         <div class="acciones-producto">
+             <form action="<?= BASE_URL ?>php/procesos/carritoAccion.php" method="POST">
              <button class="boton-producto" type="submit"><img class="add-favorito" src="<?= BASE_URL ?>img/iconos/icono-add-carrito.png" alt="Icono añadir carrito"></button>
-       
+       <input type="hidden" name="accion" value="add">
+        <input type="hidden" name="id" value="<?= $producto['id'] ?>">
+         </form>
  <?php if (isset($_SESSION['usuario_id'])): ?>
-        <a href="<?= BASE_URL ?>listaDeseosAccion.php?accion=add&id=<?= $producto['id'] ?>">
+        <a  class="boton-producto" href="<?= BASE_URL ?>php/procesos/listaDeseosAccion.php?accion=add&id=<?= $producto['id'] ?>">
             <img src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png" alt="Icono añadir favorito">
         </a>
     <?php else: ?>
-        <a class="boton-producto" href="<?= BASE_URL ?>login.php"><img src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png" alt="Icono añadir favorito"></a>
+        <a class="boton-producto" href="<?= BASE_URL ?>public/login.php"><img src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png" alt="Icono añadir favorito"></a>
     <?php endif; ?>
        </div>
     
-       <form action="carritoAccion.php" method="POST">
-        <input type="hidden" name="accion" value="add">
-        <input type="hidden" name="id" value="<?= $producto['id'] ?>">
-         </form>
-       
-
+      
     <a class="boton-producto-texto" href="<?= BASE_URL ?>public/producto.php?id=<?= $producto['id'] ?>">
             Ver producto
         </a>
@@ -77,66 +75,8 @@ require_once BASE_PATH . 'php/componentes/header.php';
 
 </div>
 
-</main>
-<footer class="footer">
-    <div class="footer-container">
 
-        <!-- LOGO + RRSS -->
-        <div class="footer-col footer-brand">
-            <img src="img/logos/yoku-negro-sf.png" alt="Yoku" class="footer-logo">
-            <p class="footer-brand-text">YOKU! Clothing Store</p>
 
-            <div class="footer-socials">
-                <a href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
-                <a href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-               
-            </div>
-        </div>
-
-        <!-- INICIO -->
-        <div class="footer-col">
-            <h4>Inicio</h4>
-            <ul>
-                <li><a href="perfil.php">Perfil</a></li>
-                <li><a href="carrito.php">Carrito compra</a></li>
-                <li><a href="#">Pedidos</a></li>
-            </ul>
-        </div>
-
-        <!-- PERSONALIZACIONES -->
-        <div class="footer-col">
-            <h4>Personalizaciones</h4>
-            <ul>
-                <li><a href="personalizaciones.php">Personalizar</a></li>
-                <li><a href="productos.php">Productos base</a></li>
-                <li><a href="contacto.php">Información</a></li>
-            </ul>
-        </div>
-
-        <!-- PRODUCTOS -->
-        <div class="footer-col">
-            <h4>Productos</h4>
-            <ul>
-                <li><a href="#">Mujer</a></li>
-                <li><a href="#">Hombre</a></li>
-                <li><a href="#">Accesorios</a></li>
-            </ul>
-        </div>
-
-        <!-- CONTACTO -->
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <ul>
-                <li><a href="contacto.php">Acerca de nosotros</a></li>
-                <li><a href="#">Políticas de seguridad</a></li>
-                <li><a href="#">Política de devoluciones</a></li>
-            </ul>
-        </div>
-
-    </div>
-</footer>
-
+<?php require_once BASE_PATH . 'php/componentes/footer.php'; ?>
 </body>
 </html>

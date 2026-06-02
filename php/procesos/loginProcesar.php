@@ -1,7 +1,7 @@
 <?php
 session_start();
 define('BASE_PATH', __DIR__ . '/../');
-require_once BASE_PATH . 'php/funciones/usuarios.php';
+require_once __DIR__ . '/../funciones/usuarios.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];

@@ -37,7 +37,7 @@ $productos = obtenerProductosActivos();
         </div>
 
         <div class="ilustracion-proceso">
-            <img src="<?= BASE_URL ?>img/grafico-diseno.png" alt="Proceso de diseño">
+            <img src="<?= BASE_URL ?>img/diseño-camiseta.jpg" alt="Proceso de diseño">
         </div>
 
         <p class="final-text">
@@ -50,7 +50,7 @@ $productos = obtenerProductosActivos();
         <h2>Productos bases a personalizar</h2>
         <div class="grid-bases">
             <article class="card-base">
-                <img src="<?= BASE_URL ?>img/productos/camiseta-negra.jpg" alt="Camiseta">
+                <img src="<?= BASE_URL ?>img/productos/camsieta-basica-negro.jpg" alt="Camiseta">
                 <h3>Camiseta</h3>
                 <p>Disponible en otros colores</p>
             </article>
@@ -71,65 +71,7 @@ $productos = obtenerProductosActivos();
 </main>
 
 
-<footer class="footer">
-    <div class="footer-container">
-
-        <!-- LOGO + RRSS -->
-        <div class="footer-col footer-brand">
-            <img src="<?= BASE_URL ?>img/logos/yoku-negro-sf.png" alt="Yoku" class="footer-logo">
-            <p class="footer-brand-text">YOKU! Clothing Store</p>
-
-            <div class="footer-socials">
-                <a href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
-                <a href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-               
-            </div>
-        </div>
-
-        <!-- INICIO -->
-        <div class="footer-col">
-            <h4>Inicio</h4>
-            <ul>
-                <li><a href="#">Perfil</a></li>
-                <li><a href="#">Carrito compra</a></li>
-                <li><a href="#">Pedidos</a></li>
-            </ul>
-        </div>
-
-        <!-- PERSONALIZACIONES -->
-        <div class="footer-col">
-            <h4>Personalizaciones</h4>
-            <ul>
-                <li><a href="#">Personalizar</a></li>
-                <li><a href="#">Productos base</a></li>
-                <li><a href="#">Información</a></li>
-            </ul>
-        </div>
-
-        <!-- PRODUCTOS -->
-        <div class="footer-col">
-            <h4>Productos</h4>
-            <ul>
-                <li><a href="#">Mujer</a></li>
-                <li><a href="#">Hombre</a></li>
-                <li><a href="#">Accesorios</a></li>
-            </ul>
-        </div>
-
-        <!-- CONTACTO -->
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <ul>
-                <li><a href="#">Acerca de nosotros</a></li>
-                <li><a href="#">Políticas de seguridad</a></li>
-                <li><a href="#">Política de devoluciones</a></li>
-            </ul>
-        </div>
-
-    </div>
-</footer>
+<?php require_once BASE_PATH . 'php/componentes/footer.php'; ?>
 
 </body>
 </html>

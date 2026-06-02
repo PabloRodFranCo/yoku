@@ -10,7 +10,9 @@
 
         <!-- LOGO + RRSS -->
         <div class="footer-col footer-brand">
+            <a href="<?=BASE_URL ?>public/index.php">
             <img src="<?= BASE_URL ?>img/logos/yoku-negro-sf.png" alt="Yoku" class="footer-logo">
+            </a>
             <p class="footer-brand-text">YOKU! Clothing Store</p>
 
             <div class="footer-socials">
@@ -27,7 +29,7 @@
             <h4>Inicio</h4>
             <ul>
                 <li><a href="<?= BASE_URL ?>public/perfil.php">Perfil</a></li>
-                <li><a href="<?= BASE_URL ?>carrito.php">Carrito compra</a></li>
+                <li><a href="<?= BASE_URL ?>public/carrito.php">Carrito compra</a></li>
                 <li><a href="#">Pedidos</a></li>
                 <li><a href="<?= BASE_URL ?>public/listaDeseos.php">Lista de deseos</a></li>
 
@@ -48,9 +50,9 @@
         <div class="footer-col">
             <h4>Productos</h4>
             <ul>
-                <li><a href="#">Mujer</a></li>
-                <li><a href="#">Hombre</a></li>
-                <li><a href="#">Accesorios</a></li>
+                <li><a href="<?= BASE_URL ?>public/productos.php">Mujer</a></li>
+                <li><a href="<?= BASE_URL ?>public/productos.php">Hombre</a></li>
+                <li><a href="<?= BASE_URL ?>public/productos.php">Accesorios</a></li>
             </ul>
         </div>
 

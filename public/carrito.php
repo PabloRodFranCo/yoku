@@ -1,64 +1,117 @@
 <?php
+session_start();
 define('BASE_PATH', __DIR__ . '/../');
 define('BASE_URL', '/yoku/');
-session_start();
+
+$titulo_pagina = "Carrito - Yoku";
+$estilo_especifico="carrito.css";
 require_once  BASE_PATH . 'config/db.php';
+
 require_once  BASE_PATH .'php/funciones/carritoFunciones.php';
 
 $carrito = obtenerCarrito();
 
+
+require_once BASE_PATH . 'php/componentes/header.php';
 ?>
 
-<h1>Mi carrito</h1>
+<main class="container-carrito">
 
-<?php if (empty($carrito)): ?>
-    <p>El carrito está vacío</p>
-<?php else: ?>
+    <h1>Mi carrito</h1>
 
-<table border="1" cellpadding="8">
-<tr>
-    <th>Producto</th>
-    <th>Precio</th>
-    <th>Cantidad</th>
-    <th>Total</th>
-    <th></th>
-</tr>
+    <?php if (empty($carrito)): ?>
 
-<?php
-$total = 0;
-foreach ($carrito as $id => $item):
-    $stmt = $conexion->prepare("SELECT nombre, precio FROM productos WHERE id = ?");
-    $stmt->execute([$id]);
-    $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+        <div class="carrito-vacio">
+            <p>Tu carrito está vacío</p>
+            <a href="<?= BASE_URL ?>public/productos.php" class="btn-seguir">
+                Explorar productos
+            </a>
+        </div>
 
-   $cantidad = $item['cantidad'];
-$subtotal = $producto['precio'] * $cantidad;
+    <?php else: ?>
 
-?>
-<tr>
-    <td><?= $producto['nombre'] ?></td>
-    <td><?= $producto['precio'] ?> €</td>
-    <td><?= $cantidad ?></td>
+        <div class="carrito-lista">
 
-    <p><strong>Texto:</strong> <?= $item['texto'] ?? '—' ?></p>
+        <?php
+        $total = 0;
 
-<?php if ($item['imagen']): ?>
-    <img src="<?= BASE_URL ?>uploads/<?= $item['imagen'] ?>" width="80">
-<?php endif; ?>
+        foreach ($carrito as $id => $item):
 
-    <td><?= $subtotal ?> €</td>
-    <td>
-        <a href="<?= BASE_URL ?>procesos/carritoAccion.php?accion=remove&id=<?= $id ?>">❌</a>
-    </td>
-</tr>
-<?php endforeach; ?>
+            $stmt = $conexion->prepare("
+                SELECT nombre, precio
+                FROM productos
+                WHERE id = ?
+            ");
 
-<tr>
-    <td colspan="3"><strong>Total</strong></td>
-    <td colspan="2"><strong><?= $total ?> €</strong></td>
-</tr>
-</table>
+            $stmt->execute([$id]);
+            $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
-<a href="<?= BASE_URL ?>public/checkout.php">Finalizar pedido</a>
+            $cantidad = $item['cantidad'];
+            $subtotal = $producto['precio'] * $cantidad;
 
-<?php endif; ?>
+            $total += $subtotal;
+        ?>
+
+            <article class="item-carrito">
+
+                <div class="info-producto">
+
+                    <h3><?= $producto['nombre'] ?></h3>
+
+                    <p><strong>Precio:</strong>
+                        <?= $producto['precio'] ?> €
+                    </p>
+
+                    <p><strong>Cantidad:</strong>
+                        <?= $cantidad ?>
+                    </p>
+
+                    <?php if (!empty($item['texto'])): ?>
+                        <p>
+                            <strong>Texto personalizado:</strong>
+                            <?= $item['texto'] ?>
+                        </p>
+                    <?php endif; ?>
+
+                </div>
+
+                <?php if (!empty($item['imagen'])): ?>
+                    <div class="preview-diseno">
+                        <img src="<?= BASE_URL ?>uploads/<?= $item['imagen'] ?>">
+                    </div>
+                <?php endif; ?>
+
+                <div class="acciones-carrito">
+
+                    <p class="subtotal">
+                        <?= $subtotal ?> €
+                    </p>
+
+                    <a class="btn-eliminar"
+                       href="<?= BASE_URL ?>php/procesos/carritoAccion.php?accion=remove&id=<?= $id ?>">
+                        Eliminar
+                    </a>
+
+                </div>
+
+            </article>
+
+        <?php endforeach; ?>
+
+        </div>
+
+        <div class="resumen-carrito">
+
+            <h2>Total: <?= $total ?> €</h2>
+
+            <a class="btn-finalizar"
+               href="<?= BASE_URL ?>public/checkout.php">
+                Finalizar pedido
+            </a>
+
+        </div>
+
+    <?php endif; ?>
+
+</main>
+<?php require_once BASE_PATH . 'php/componentes/footer.php'; ?>
