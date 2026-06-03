@@ -1,0 +1,35 @@
+.contenedor-pedidos{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.pedido-card{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.pedido-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.pedido-info{
+    margin-bottom:15px;
+}
+
+.pedido-acciones{
+    display:flex;
+    gap:10px;
+}
+
+.btn-pedido{
+    padding:10px 15px;
+    background:#000;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}

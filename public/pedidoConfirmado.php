@@ -1,12 +1,25 @@
 <?php
+
+session_start();
+
+define('BASE_PATH', __DIR__ . '/../');
 define('BASE_URL', '/yoku/');
-if (!isset($_GET['id'])) {
-    die("Pedido no encontrado");
-}
+
+require_once BASE_PATH . 'php/componentes/header.php';
+
+$id = intval($_GET['id'] ?? 0);
 ?>
 
-<h1>✅ Pedido realizado</h1>
-<p>Tu pedido se ha registrado correctamente.</p>
-<p><strong>Número de pedido:</strong> <?= $_GET['id'] ?></p>
+<main class="container">
 
-<a href="<?= BASE_URL ?>public/index.php">Volver a la tienda</a>
+    <h1>Pedido realizado correctamente</h1>
+
+    <p>
+        Tu pedido #<?= $id ?> ha sido registrado.
+    </p>
+
+    <a href="<?= BASE_URL ?>public/perfil.php">
+        Ir a mi perfil
+    </a>
+
+</main>

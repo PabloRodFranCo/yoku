@@ -126,10 +126,17 @@ require_once BASE_PATH . 'php/componentes/header.php';
 
             <h2>Total: <?= $total ?> €</h2>
 
-            <a class="btn-finalizar"
-               href="<?= BASE_URL ?>public/checkout.php">
-                Finalizar pedido
-            </a>
+            <form
+                action="<?= BASE_URL ?>public/procesos/checkoutProcesar.php"
+                method="POST"
+            >
+                <button
+                    type="submit"
+                    class="btn-finalizar"
+                >
+                    Finalizar pedido
+                </button>
+            </form>
 
         </div>
 

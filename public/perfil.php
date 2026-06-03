@@ -10,6 +10,28 @@ define('BASE_PATH', __DIR__ . '/../');
 define('BASE_URL', '/yoku/');
 
 require BASE_PATH . 'php/funciones/productos.php';
+require_once BASE_PATH . 'config/db.php';
+
+$stmtFavoritos = $conexion->prepare("
+    SELECT
+        p.id,
+        p.nombre,
+        p.precio,
+        p.imagen,
+        p.categoria
+    FROM lista_deseos ld
+    INNER JOIN productos p
+        ON ld.producto_id = p.id
+    WHERE ld.usuario_id = ?
+    ORDER BY ld.creado_en DESC
+    LIMIT 3
+");
+
+$stmtFavoritos->execute([
+    $_SESSION['usuario_id']
+]);
+
+$favoritos = $stmtFavoritos->fetchAll(PDO::FETCH_ASSOC);
 $productos = obtenerProductosActivos();
 $titulo_pagina = "Mi Perfil - YOKU";
 $estilo_especifico= "perfil.css";
@@ -36,46 +58,52 @@ require_once BASE_PATH . 'php/componentes/header.php';
             <nav class="menu-perfil">
                 <ul>
                     <li><a href="<?= BASE_URL ?>public/listaDeseos.php">Lista de deseos</a></li>
-                    <li><a href="#">Consultar pedidos</a></li>
-                    <li><a href="#">Configurar datos personales</a></li>
+                    <li><a href="<?= BASE_URL ?>public/misPedidos.php">Consultar pedidos</a></li>
+                    <li><a href="<?= BASE_URL ?>public/configurarDatos.php">Configurar datos personales</a></li>
                 </ul>
             </nav>
         </div>
     </section>
-
     <section class="seccion-lista">
+
         <h2>Lista favoritos</h2>
         <div class="grid-productos-perfil">
-            <article class="card-mini">
-                <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/bufanda-beige.jpg" alt="Bufanda">
-                </div>
-                <h3>Bufanda</h3>
-                <p class="subtitulo">Color beige</p>
-                <p class="precio">10,99 €</p>
-            </article>
-
-            <article class="card-mini">
-                <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/pant.jpg" alt="Pantalón">
-                </div>
-                <h3>Pantalón</h3>
-                <p class="subtitulo">A rayas</p>
-                <p class="precio">10,99 €</p>
-            </article>
-
-            <article class="card-mini">
-                <div class="img-wrapper">
-                    <img src="<?= BASE_URL ?>img/productos/zapas.webp" alt="Zapatos">
-                </div>
-                <h3>Zapatos</h3>
-                <p class="subtitulo">Blancos lisos</p>
-                <p class="precio">10,99 €</p>
-            </article>
+            <?php if(empty($favoritos)): ?>
+                <p>No tienes productos en favoritos.</p>
+            <?php else: ?>
+                <?php foreach($favoritos as $favorito): ?>
+                    <article class="card-mini">
+                        <div class="img-wrapper">
+                            <img
+                                src="<?= BASE_URL . 'img/productos/'. $favorito['imagen'] ?>"
+                                alt="<?= htmlspecialchars($favorito['nombre']) ?>"
+                            >
+                        </div>
+                        <h3>
+                            <?= htmlspecialchars($favorito['nombre']) ?>
+                        </h3>
+                        <p class="subtitulo">
+                            <?= ucfirst($favorito['categoria']) ?>
+                        </p>
+                        <p class="precio">
+                            <?= number_format(
+                                $favorito['precio'],
+                                2,
+                                ',',
+                                '.'
+                            ) ?> €
+                        </p>
+                    </article>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
-        
         <div class="btn-container">
-            <a href="<?= BASE_URL ?>public/favoritos.php" class="btn-ver-todo">Ver todo</a>
+            <a
+                href="<?= BASE_URL ?>public/listaDeseos.php"
+                class="btn-ver-todo"
+            >
+                Ver todo
+            </a>
         </div>
     </section>
 </main>
