@@ -9,7 +9,17 @@ require BASE_PATH . 'php/funciones/productos.php';
 require BASE_PATH . 'php/componentes/header.php';
 
 
-$productos = obtenerProductosActivos();
+$categoria = $_GET['categoria'] ?? '';
+
+if ($categoria !== '') {
+
+    $productos = obtenerProductosPorCategoria($categoria);
+
+} else {
+
+    $productos = obtenerProductosActivos();
+
+}
 
 
 ?>
@@ -17,7 +27,32 @@ $productos = obtenerProductosActivos();
 
 <main>
 <h1>Nuestros productos</h1>
-
+<div class="filtros-productos">
+    <a
+        class="filtro-btn"
+        href="<?= BASE_URL ?>public/productos.php"
+    >
+        Todos
+    </a>
+    <a
+        class="filtro-btn"
+        href="<?= BASE_URL ?>public/productos.php?categoria=hombre"
+    >
+        Hombre
+    </a>
+    <a
+        class="filtro-btn"
+        href="<?= BASE_URL ?>public/productos.php?categoria=mujer"
+    >
+        Mujer
+    </a>
+    <a
+        class="filtro-btn"
+        href="<?= BASE_URL ?>public/productos.php?categoria=accesorio"
+    >
+        Accesorios
+    </a>
+</div>
 <div class="productos">
 
 <?php foreach ($productos as $producto): ?>

@@ -157,3 +157,32 @@
         flex-direction: column;
     }
 }
+
+.acciones-producto-detalle{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    align-items:center;
+}
+
+.acciones-producto-detalle form{
+    margin:0;
+}
+
+.acciones-producto-detalle .boton-producto{
+    width:55px;
+    height:55px;
+    background:black;
+    border:none;
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+
+.acciones-producto-detalle .boton-producto img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+}

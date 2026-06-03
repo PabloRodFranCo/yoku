@@ -12,6 +12,9 @@ if (!$id) {
     die("Producto no encontrado");
 }
 $producto = obtenerProductoPorId($id);
+$productosRelacionados = obtenerProductosPorCategoria(
+    $producto['categoria']
+);
 
 $titulo_pagina=$producto['nombre'];
 
@@ -28,35 +31,53 @@ require BASE_PATH . 'php/componentes/header.php';
             <div class="main-image-container">
                 <img src="<?= BASE_URL ?>img/productos/<?= $producto['imagen'] ?>" alt="<?= $producto['nombre'] ?>">
             </div>
-        </section>
-
-        <section class="product-info">
-            <h1 class="product-title"><?= $producto['nombre'] ?></h1>
-            <p class="product-stock">Stock disponible: 10</p>
-            <p class="product-price"><?= number_format($producto['precio'], 2) ?> €</p>
-
-            <form action="carritoAccion.php" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="accion" value="add">
-    <input type="hidden" name="id" value="<?= $producto['id'] ?>">
-
-    <?php if ($producto['permite_personalizacion']): ?>
-        <label>Texto personalizado</label>
-        <input type="text" name="texto">
-    <?php endif; ?>
-
-    <?php if ($producto['permite_imagen']): ?>
-        <label>Imagen personalizada</label>
-        <input type="file" name="imagen">
-    <?php endif; ?>
-
-    <button type="submit">Añadir al carrito</button>
-</form>
-<a href="<?= BASE_URL ?>procesar/listaDeseosAccion.php">❤️ Lista de deseos</a>
-
-
-
-        </section>
-    </div>
+                </section>
+                <section class="product-info">
+                    <h1 class="product-title"><?= $producto['nombre'] ?></h1>
+                    <p class="product-stock">Stock disponible: 10</p>
+                    <p class="product-price"><?= number_format($producto['precio'], 2) ?> €</p>
+                    <div class="acciones-producto-detalle">
+                    <form
+                        action="<?= BASE_URL ?>php/procesos/carritoAccion.php"
+                        method="POST"
+                    >
+                        <input type="hidden" name="accion" value="add">
+                        <input type="hidden" name="id" value="<?= $producto['id'] ?>">
+                        <button
+                            class="boton-producto"
+                            type="submit"
+                        >
+                            <img
+                                src="<?= BASE_URL ?>img/iconos/icono-add-carrito.png"
+                                alt="Añadir carrito"
+                            >
+                        </button>
+                    </form>
+                    <?php if(isset($_SESSION['usuario_id'])): ?>
+                        <a
+                            class="boton-producto"
+                            href="<?= BASE_URL ?>php/procesos/listaDeseosAccion.php?accion=add&id=<?= $producto['id'] ?>"
+                        >
+                            <img
+                                src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png"
+                                alt="Favoritos"
+                            >
+                        </a>
+                    <?php else: ?>
+                        <a
+                            class="boton-producto"
+                            href="<?= BASE_URL ?>public/login.php"
+                        >
+                            <img
+                                src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png"
+                                alt="Favoritos"
+                            >
+                        </a>
+                    <?php endif; ?>
+                </div>
+                    <p class="product-description"><?= $producto['descripcion'] ?></p>
+                </section>
+            </div>
 
     <section class="related-section">
         <h2>Productos relacionados</h2>

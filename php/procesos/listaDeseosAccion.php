@@ -1,35 +1,52 @@
 <?php
+
 session_start();
-define('BASE_PATH', __DIR__ . '/../');
-require_once BASE_PATH . '../config/db.php';
+
+define('BASE_PATH', dirname(__DIR__, 2) . '/');
+
+require_once BASE_PATH . 'config/db.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    die("Debes iniciar sesión");
-}
 
-if (!isset($_GET['accion'], $_GET['id'])) {
-    header("Location: /yoku/public/index.php");
+    header('Location: ../../public/login.php');
     exit;
 }
 
-$usuario_id = $_SESSION['usuario_id'];
-$producto_id = (int)$_GET['id'];
+$usuarioId = $_SESSION['usuario_id'];
 
-if ($_GET['accion'] === 'add') {
+$accion = $_GET['accion'] ?? '';
+$productoId = intval($_GET['id'] ?? 0);
 
-    $sql = "INSERT IGNORE INTO lista_deseos (usuario_id, producto_id)
-            VALUES (?, ?)";
-    $stmt = $conexion->prepare($sql);
-    $stmt->execute([$usuario_id, $producto_id]);
+if (!$productoId) {
+
+    header('Location: ../../public/listaDeseos.php');
+    exit;
 }
 
-if ($_GET['accion'] === 'remove') {
+if ($accion === 'add') {
 
-    $sql = "DELETE FROM lista_deseos
-            WHERE usuario_id = ? AND producto_id = ?";
+    $sql = "
+        INSERT IGNORE INTO lista_deseos
+        (usuario_id, producto_id)
+        VALUES (?, ?)
+    ";
+
     $stmt = $conexion->prepare($sql);
-    $stmt->execute([$usuario_id, $producto_id]);
+    $stmt->execute([$usuarioId, $productoId]);
+
 }
 
-header("Location: " . $_SERVER['HTTP_REFERER']);
+if ($accion === 'remove') {
+
+    $sql = "
+        DELETE FROM lista_deseos
+        WHERE usuario_id = ?
+        AND producto_id = ?
+    ";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute([$usuarioId, $productoId]);
+}
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 exit;

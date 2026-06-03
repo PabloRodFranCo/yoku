@@ -18,22 +18,50 @@ require_once BASE_PATH . 'php/componentes/header.php';
 <main>
 <h1>Secciones</h1>
 <section class="secciones">
-    <article>
-    <img src="<?= BASE_URL ?>img/mujer-seccion.jpg" alt="portada de seccion mujer">
-    </article>
-    
-    <article>
-    <img src="<?= BASE_URL ?>img/hombre-seccion.jpg" alt="portada de seccion hombre">
-
-    </article>
-
-    <article>      
-    <img src="<?= BASE_URL ?>img/accesorios-seccion.jpg" alt="portada de seccion accesorios">
-    </article>
-    <article>      
-    <img src="<?= BASE_URL ?>img/custom-seccion.jpg" alt="portada de seccion custom">
-    </article>
-    
+    <a
+        class="seccion-link"
+        href="<?= BASE_URL ?>public/productos.php?categoria=mujer"
+    >
+        <article>
+            <img
+                src="<?= BASE_URL ?>img/mujer-seccion.jpg"
+                alt="portada de seccion mujer"
+            >
+        </article>
+    </a>
+    <a
+        class="seccion-link"
+        href="<?= BASE_URL ?>public/productos.php?categoria=hombre"
+    >
+        <article>
+            <img
+                src="<?= BASE_URL ?>img/hombre-seccion.jpg"
+                alt="portada de seccion hombre"
+            >
+        </article>
+    </a>
+    <a
+        class="seccion-link"
+        href="<?= BASE_URL ?>public/productos.php?categoria=accesorio"
+    >
+        <article>
+            <img
+                src="<?= BASE_URL ?>img/accesorios-seccion.jpg"
+                alt="portada de seccion accesorios"
+            >
+        </article>
+    </a>
+    <a
+        class="seccion-link"
+        href="<?= BASE_URL ?>public/personalizaciones.php"
+    >
+        <article>
+            <img
+                src="<?= BASE_URL ?>img/custom-seccion.jpg"
+                alt="portada de seccion custom"
+            >
+        </article>
+    </a>
 </section>
 
 <h2>Nuestros productos</h2>

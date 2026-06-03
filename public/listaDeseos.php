@@ -56,27 +56,17 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <h3><?= $producto['nombre'] ?></h3>
         <p><?= $producto['descripcion'] ?></p>
-        <p><strong><?= $producto['precio'] ?> €</strong></p>
-        <div class="acciones-producto">
-             <form action="<?= BASE_URL ?>php/procesos/carritoAccion.php" method="POST">
-             <button class="boton-producto" type="submit"><img class="add-favorito" src="<?= BASE_URL ?>img/iconos/icono-add-carrito.png" alt="Icono añadir carrito"></button>
-       <input type="hidden" name="accion" value="add">
-        <input type="hidden" name="id" value="<?= $producto['id'] ?>">
-         </form>
- <?php if (isset($_SESSION['usuario_id'])): ?>
-        <a  class="boton-producto" href="<?= BASE_URL ?>php/procesos/listaDeseosAccion.php?accion=add&id=<?= $producto['id'] ?>">
-            <img src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png" alt="Icono añadir favorito">
-        </a>
-    <?php else: ?>
-        <a class="boton-producto" href="<?= BASE_URL ?>public/login.php"><img src="<?= BASE_URL ?>img/iconos/icono-favoritos-blanco-i.png" alt="Icono añadir favorito"></a>
-    <?php endif; ?>
-       </div>
-    
+        <p><strong><?= $producto['precio'] ?> €</strong></p>    
       
     <a class="boton-producto-texto" href="<?= BASE_URL ?>public/producto.php?id=<?= $producto['id'] ?>">
             Ver producto
-        </a>
-
+    </a>
+    <a class="boton-producto-texto"
+        href="<?= BASE_URL ?>php/procesos/listaDeseosAccion.php?accion=remove&id=<?= $producto['id'] ?>"
+        onclick="return confirm('¿Eliminar de favoritos?')"
+    >
+        Eliminar de favoritos
+    </a>
     
         
                     </div>

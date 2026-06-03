@@ -59,6 +59,21 @@ function actualizarProducto($id, $precio, $permite_personalizacion, $permite_ima
         $id
     ]);
 }
+function obtenerProductosPorCategoria($categoria)
+{
+    global $conexion;
 
+    $sql = "
+        SELECT *
+        FROM productos
+        WHERE activo = 1
+        AND LOWER(categoria) = LOWER(?)
+    ";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute([$categoria]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
